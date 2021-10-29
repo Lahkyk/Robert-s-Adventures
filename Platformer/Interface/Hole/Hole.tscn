@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Interface/Hole/Hole.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 25.3091, 10 )
+
+[node name="Hole" type="StaticBody2D"]
+scale = Vector2( 20, 2 )
+
+[node name="Hole" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+script = ExtResource( 1 )

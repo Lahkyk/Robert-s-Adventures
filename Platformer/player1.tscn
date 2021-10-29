@@ -1,0 +1,123 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Sprite/Robert_run-1.png.png" type="Texture" id=1]
+[ext_resource path="res://Sprite/Robert_static-1.png.png" type="Texture" id=2]
+[ext_resource path="res://Sprite/Robert_run-2.png.png" type="Texture" id=3]
+[ext_resource path="res://Environment/fond_niveau1.png" type="Texture" id=4]
+[ext_resource path="res://Sprite/Robert_jump-4-fixed.png" type="Texture" id=5]
+[ext_resource path="res://KinematicBody2D.gd" type="Script" id=6]
+[ext_resource path="res://Health.gd" type="Script" id=7]
+[ext_resource path="res://Purse.gd" type="Script" id=8]
+[ext_resource path="res://Sprite/Empty.png" type="Texture" id=9]
+[ext_resource path="res://Sounds/background-music.ogg" type="AudioStream" id=10]
+[ext_resource path="res://Sounds/jump-sound_1.ogg" type="AudioStream" id=11]
+[ext_resource path="res://Sounds/coin-sound.ogg" type="AudioStream" id=12]
+[ext_resource path="res://Sounds/damage-virus-sound.ogg" type="AudioStream" id=13]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "Air",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "WalkDamaged",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "AirDamaged",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "IdleDamaged",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 25.433, 66.1402 )
+
+[node name="player" type="KinematicBody2D"]
+position = Vector2( 62.8191, 473.12 )
+script = ExtResource( 6 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 92.261, -21.7462 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 16, -8 )
+current = true
+limit_left = 0
+limit_top = -585
+limit_right = 18000
+limit_bottom = 766
+smoothing_enabled = true
+smoothing_speed = 4.0
+editor_draw_limits = true
+
+[node name="Pos_Jump_Anim" type="Position2D" parent="."]
+position = Vector2( 31, 21 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="fond jeu" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 8014.45, -26.461 )
+scale = Vector2( 2.72214, 3.71274 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource( 7 )
+
+[node name="Purse" type="Node" parent="."]
+script = ExtResource( 8 )
+
+[node name="CoinCollected" type="AudioStreamPlayer" parent="Purse"]
+stream = ExtResource( 12 )
+volume_db = -13.448
+
+[node name="InvulnerabilityTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 43.9133, -45.0119 )
+scale = Vector2( 4.10436, 4.30025 )
+frames = SubResource( 1 )
+animation = "WalkDamaged"
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 50.9387, -45.9538 )
+shape = SubResource( 2 )
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -22.414
+autoplay = true
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+volume_db = -15.241
+
+[node name="VirusDamageSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 13 )
+volume_db = -9.767

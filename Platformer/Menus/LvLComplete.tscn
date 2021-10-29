@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Menus/GameOver.gd" type="Script" id=1]
+[ext_resource path="res://Sounds/victory-sound.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Sprite/Menu-titre/levelcompleted.png" type="Texture" id=3]
+[ext_resource path="res://Sprite/Menu/Pause_Quit-1.png.png" type="Texture" id=4]
+[ext_resource path="res://Sprite/Menu/Pause_Quit-2.png.png" type="Texture" id=5]
+[ext_resource path="res://Sprite/Menu/Pause_Restart-1.png.png" type="Texture" id=6]
+[ext_resource path="res://Sprite/Menu/Pause_Restart-2.png.png" type="Texture" id=7]
+
+[node name="GameOver" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.294
+margin_bottom = 423.6
+color = Color( 0.937255, 0.964706, 0.870588, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LvLComplete" type="MarginContainer" parent="."]
+anchor_left = 0.036
+anchor_top = 0.037
+anchor_right = 0.953
+anchor_bottom = 0.381
+margin_left = 34.136
+margin_top = -22.2
+margin_right = -18.8721
+margin_bottom = 9.39999
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="LvLComplete"]
+margin_right = 885.0
+margin_bottom = 238.0
+texture = ExtResource( 3 )
+patch_margin_right = 10
+
+[node name="Restart" type="TextureButton" parent="."]
+margin_left = 424.143
+margin_top = 219.633
+margin_right = 604.143
+margin_bottom = 354.633
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 7 )
+texture_focused = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="TextureButton" parent="."]
+margin_left = 424.143
+margin_top = 354.633
+margin_right = 604.143
+margin_bottom = 489.633
+rect_min_size = Vector2( 140, 120 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+texture_focused = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+volume_db = -14.345
+autoplay = true
+[connection signal="pressed" from="Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]

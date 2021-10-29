@@ -1,0 +1,38 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Collectibles/Gold_7.png" type="Texture" id=1]
+[ext_resource path="res://Collectibles/Gold_10.png" type="Texture" id=2]
+[ext_resource path="res://Collectibles/Gold_5.png" type="Texture" id=3]
+[ext_resource path="res://Collectibles/Gold_3.png" type="Texture" id=4]
+[ext_resource path="res://Collectibles/Gold_4.png" type="Texture" id=5]
+[ext_resource path="res://Collectibles/Gold_2.png" type="Texture" id=6]
+[ext_resource path="res://Collectibles/Gold_9.png" type="Texture" id=7]
+[ext_resource path="res://Collectibles/Gold_1.png" type="Texture" id=8]
+[ext_resource path="res://Collectibles/Gold_6.png" type="Texture" id=9]
+[ext_resource path="res://Collectibles/Gold_8.png" type="Texture" id=10]
+[ext_resource path="res://Collectibles/Coin.gd" type="Script" id=11]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 29.1352
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 9 ), ExtResource( 1 ), ExtResource( 10 ), ExtResource( 7 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 10.0
+} ]
+
+[node name="Coin" type="Area2D"]
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.1, 0.1 )
+frames = SubResource( 2 )
+animation = "idle"
+frame = 9
+playing = true
+[connection signal="body_entered" from="." to="." method="_on_Coin_body_entered"]

@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Sprite/ennemi-violet/Virus_violet_marche-3.png.png" type="Texture" id=1]
+[ext_resource path="res://Sprite/ennemi-violet/Virus_violet_marche-4.png.png" type="Texture" id=2]
+[ext_resource path="res://Sprite/ennemi-violet/Virus_violet-1.png.png" type="Texture" id=3]
+[ext_resource path="res://Sprite/ennemi-violet/Virus_violet-2.png.png" type="Texture" id=4]
+[ext_resource path="res://Ennemi/Ennemy-purple.gd" type="Script" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": false,
+"name": "Dead",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+} ]
+
+[node name="Ennemy-purple" type="KinematicBody2D"]
+script = ExtResource( 5 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 15.7145, -40.4086 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 1 )
+animation = "Dead"
+playing = true
+flip_h = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 32.128, 0 )
+scale = Vector2( 2, 2 )
+polygon = PoolVector2Array( 24.436, 16.25, 16.186, -7.25, 0.221542, -3.27043, 0.641998, -31.4405, 9.68164, -38.3779, 9.68164, -49.5197, -1.67047, -58.9798, -14.2839, -58.5594, -24.3747, -49.3095, -24.3747, -36.9063, -16.3862, -30.3893, -16.1759, -4.95222, -40.314, -3.5, -37.1644, 16.3175 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 60.7322, -0.629974 )
+enabled = true
+cast_to = Vector2( 0, 40 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

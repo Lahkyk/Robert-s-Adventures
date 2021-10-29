@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Pause.gd" type="Script" id=1]
+[ext_resource path="res://Sprite/Menu/Pause_Resume-2.png.png" type="Texture" id=2]
+[ext_resource path="res://Sprite/Menu/Pause_Resume-1.png.png" type="Texture" id=3]
+[ext_resource path="res://Sprite/Menu/Pause_Quit-1.png.png" type="Texture" id=4]
+[ext_resource path="res://Sprite/Menu/Pause_Quit-2.png.png" type="Texture" id=5]
+[ext_resource path="res://Sprite/Menu/Pause_Restart-1.png.png" type="Texture" id=6]
+[ext_resource path="res://Sprite/Menu/Pause_Restart-2.png.png" type="Texture" id=7]
+
+[node name="Pause" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0.937255, 0.964706, 0.870588, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resume" type="TextureButton" parent="."]
+margin_left = 400.0
+margin_top = 111.0
+margin_right = 580.0
+margin_bottom = 246.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 2 )
+texture_focused = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Restart" type="TextureButton" parent="."]
+margin_left = 400.0
+margin_top = 246.0
+margin_right = 580.0
+margin_bottom = 381.0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 7 )
+texture_focused = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="TextureButton" parent="."]
+margin_left = 400.0
+margin_top = 381.0
+margin_right = 580.0
+margin_bottom = 516.0
+rect_min_size = Vector2( 140, 120 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+texture_focused = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="mouse_exited" from="." to="." method="_on_Pause_mouse_exited"]
+[connection signal="pressed" from="Resume" to="." method="_on_Resume_pressed"]
+[connection signal="pressed" from="Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]

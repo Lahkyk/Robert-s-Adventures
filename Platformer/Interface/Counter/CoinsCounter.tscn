@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Interface/Counter/Counter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Interface/Counter/Gold_1.png" type="Texture" id=2]
+[ext_resource path="res://Interface/Counter/CoinsCounter.gd" type="Script" id=3]
+
+[node name="CoinsCounter" instance=ExtResource( 1 )]
+margin_right = 160.0
+script = ExtResource( 3 )
+
+[node name="Icon" parent="." index="0"]
+margin_left = -61.0
+texture = ExtResource( 2 )
+
+[node name="Number" parent="." index="1"]
+margin_right = 99.0
